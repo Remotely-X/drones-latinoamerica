@@ -303,7 +303,7 @@
             </a>
           </div>
 
-          <div class="news-grid" aria-label="Noticias recientes sobre drones">
+          <div class="news-grid collapsible is-collapsed" id="news-grid" aria-label="Noticias recientes sobre drones">
             <article class="news-card">
               <div class="news-media">
                 <img src="assets/news-crimea-drones.jpg" alt="Imagen de la noticia sobre drones ucranianos y Crimea" />
@@ -407,6 +407,19 @@
                 <a href="https://www.youtube.com/watch?v=Zv3zT6TOR3s" target="_blank" rel="noopener noreferrer">Ver video <span aria-hidden="true">→</span></a>
               </div>
             </article>
+          </div>
+
+          <div class="see-more-row">
+            <button
+              class="btn btn-ghost see-more-btn"
+              type="button"
+              data-see-more="news-grid"
+              data-label-more="Ver todas las noticias"
+              data-label-less="Ver menos"
+              aria-expanded="false"
+            >
+              Ver todas las noticias
+            </button>
           </div>
 
           <p class="news-footnote">Las noticias enlazan a sus fuentes originales.</p>
