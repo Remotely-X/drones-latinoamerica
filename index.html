@@ -694,12 +694,17 @@
           <a href="#login">Normas</a>
         </div>
 
-        <form class="newsletter">
+        <form class="newsletter" action="https://formsubmit.co/droneslatinos@gmail.com" method="POST">
           <h3>Newsletter</h3>
           <p>Recibe noticias, cursos, eventos exclusivos para la comunidad.</p>
+          <input type="hidden" name="_subject" value="Nueva suscripción al newsletter | Drones Latinoamérica" />
+          <input type="hidden" name="_next" value="https://drones-latinoamerica.com/gracias.html" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="text" name="_honey" style="display: none" tabindex="-1" autocomplete="off" />
           <label class="sr-only" for="email">Tu correo electrónico</label>
           <div class="newsletter-control">
-            <input id="email" type="email" placeholder="Tu correo electrónico" />
+            <input id="email" name="email" type="email" required placeholder="Tu correo electrónico" />
             <button class="btn btn-primary" type="submit">Suscribirme</button>
           </div>
         </form>
