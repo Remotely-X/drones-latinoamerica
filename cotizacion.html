@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solicitar cotización | Drones Latinoamérica</title>
+    <meta
+      name="description"
+      content="Solicita una cotización personalizada de cursos, talleres y capacitaciones de Drones Latinoamérica."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="shop-category-page">
+    <header class="site-header course-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Drones Latinoamérica">
+        <img class="brand-logo" src="assets/logo-drones-latinoamerica.png" alt="DRONES LATINOAMÉRICA" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegación principal" data-nav>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="index.html#cursos">Cursos</a>
+        <a href="index.html#proyectos">Proyectos</a>
+        <a href="index.html#marketplace">Marketplace</a>
+        <a href="index.html#recursos">Recursos</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="index.html#cursos">Volver</a>
+      </div>
+    </header>
+
+    <main class="shop-category">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html#inicio">Inicio</a>
+          <span aria-hidden="true">›</span>
+          <a href="index.html#cursos">Cursos</a>
+          <span aria-hidden="true">›</span>
+          <strong>Solicitar cotización</strong>
+        </nav>
+
+        <section class="form-section">
+          <div class="form-intro">
+            <p class="section-kicker">Capacitación a tu medida</p>
+            <h1>Solicitar cotización</h1>
+            <p>
+              Cuéntanos qué necesitas y te enviaremos una cotización personalizada para cursos, talleres y
+              capacitaciones, en modalidad online, presencial o mixta.
+            </p>
+          </div>
+
+          <form class="site-form" action="https://formsubmit.co/droneslatinos@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Solicitud de cotización | Drones Latinoamérica" />
+            <input type="hidden" name="_next" value="https://drones-latinoamerica.com/gracias.html" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" style="display: none" tabindex="-1" autocomplete="off" />
+
+            <div class="form-grid">
+              <label class="form-field">
+                <span>Nombre completo *</span>
+                <input type="text" name="Nombre" required placeholder="Tu nombre" />
+              </label>
+
+              <label class="form-field">
+                <span>Comunidad, grupo o compañía</span>
+                <input type="text" name="Comunidad / Grupo / Compañía" placeholder="Nombre de tu organización" />
+              </label>
+
+              <label class="form-field">
+                <span>Teléfono</span>
+                <input type="tel" name="Teléfono" placeholder="+57 300 000 0000" />
+              </label>
+
+              <label class="form-field">
+                <span>País</span>
+                <input type="text" name="País" placeholder="Tu país" />
+              </label>
+
+              <label class="form-field">
+                <span>Curso o servicio de interés</span>
+                <input type="text" name="Curso o servicio de interés" placeholder="Ej. Pixhawk para Principiantes" />
+              </label>
+
+              <label class="form-field">
+                <span>Número de participantes</span>
+                <input type="number" name="Número de participantes" min="1" placeholder="Ej. 12" />
+              </label>
+
+              <label class="form-field">
+                <span>Modalidad preferida</span>
+                <select name="Modalidad">
+                  <option value="">Selecciona una opción</option>
+                  <option value="Online">Online</option>
+                  <option value="Presencial">Presencial</option>
+                  <option value="Mixta">Mixta</option>
+                </select>
+              </label>
+
+              <label class="form-field form-field-full">
+                <span>Detalles de tu solicitud</span>
+                <textarea name="Mensaje" rows="5" placeholder="Cuéntanos objetivos, fechas tentativas y cualquier detalle relevante..."></textarea>
+              </label>
+            </div>
+
+            <button class="btn btn-primary btn-large" type="submit">SOLICITAR COTIZACIÓN</button>
+            <p class="form-note">Tu solicitud se envía de forma segura a nuestro equipo. Te enviaremos la cotización a la brevedad.</p>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
