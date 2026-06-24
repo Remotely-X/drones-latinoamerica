@@ -68,6 +68,89 @@ searchPanel?.addEventListener("submit", (event) => {
   searchToggle?.setAttribute("aria-expanded", "false");
 });
 
+const forumList = document.querySelector("[data-forum-list]");
+
+if (forumList) {
+  const base = forumList.dataset.forumBase;
+
+  const renderItem = (title, replies, url) => {
+    const link = document.createElement("a");
+    link.className = "forum-item";
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const icon = document.createElement("span");
+    icon.className = "forum-icon";
+    icon.setAttribute("aria-hidden", "true");
+
+    const body = document.createElement("span");
+    const strong = document.createElement("strong");
+    strong.textContent = title;
+    const small = document.createElement("small");
+    small.textContent =
+      replies === 1 ? "1 respuesta" : `${replies} respuestas`;
+    body.append(strong, small);
+
+    const chevron = document.createElement("em");
+    chevron.setAttribute("aria-hidden", "true");
+    chevron.textContent = "›";
+
+    link.append(icon, body, chevron);
+    return link;
+  };
+
+  fetch(`${base}/latest.json`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("No se pudo cargar el foro");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const topics = (data?.topic_list?.topics || [])
+        .filter((topic) => !topic.pinned_globally)
+        .slice(0, 5);
+
+      if (!topics.length) {
+        throw new Error("Sin temas");
+      }
+
+      forumList.innerHTML = "";
+      topics.forEach((topic) => {
+        const replies = Math.max((topic.posts_count || 1) - 1, 0);
+        const url = `${base}/t/${topic.slug}/${topic.id}`;
+        forumList.append(renderItem(topic.title, replies, url));
+      });
+    })
+    .catch(() => {
+      forumList.innerHTML = "";
+      const fallback = document.createElement("a");
+      fallback.className = "forum-item";
+      fallback.href = `${base}/latest`;
+      fallback.target = "_blank";
+      fallback.rel = "noopener noreferrer";
+
+      const icon = document.createElement("span");
+      icon.className = "forum-icon";
+      icon.setAttribute("aria-hidden", "true");
+
+      const body = document.createElement("span");
+      const strong = document.createElement("strong");
+      strong.textContent = "Visita nuestro foro en Discourse";
+      const small = document.createElement("small");
+      small.textContent = "Temas, preguntas y proyectos de la comunidad";
+      body.append(strong, small);
+
+      const chevron = document.createElement("em");
+      chevron.setAttribute("aria-hidden", "true");
+      chevron.textContent = "›";
+
+      fallback.append(icon, body, chevron);
+      forumList.append(fallback);
+    });
+}
+
 document.querySelectorAll("[data-see-more]").forEach((button) => {
   button.addEventListener("click", () => {
     const grid = document.getElementById(button.getAttribute("data-see-more"));
