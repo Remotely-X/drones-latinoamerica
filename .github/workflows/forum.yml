@@ -1,0 +1,36 @@
+name: Actualizar temas del foro
+
+on:
+  schedule:
+    - cron: "0 * * * *" # cada hora
+  workflow_dispatch: {} # permite ejecutarlo manualmente desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update-forum:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Traer últimos temas del foro (Discourse)
+        run: |
+          curl -sSL -H "User-Agent: Mozilla/5.0" \
+            "https://droneslatinoamerica.discourse.group/latest.json" -o latest-raw.json
+          jq '{topic_list: {topics: [.topic_list.topics[] | {id, slug, title, posts_count, pinned_globally}]}}' \
+            latest-raw.json > forum-latest.json
+          rm -f latest-raw.json
+
+      - name: Commit si hay cambios
+        run: |
+          git add forum-latest.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios en los temas del foro."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Actualiza temas del foro"
+            git push
+          fi

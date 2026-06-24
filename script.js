@@ -100,13 +100,18 @@ if (forumList) {
     return link;
   };
 
-  fetch(`${base}/latest.json`)
-    .then((response) => {
+  const loadJson = (url) =>
+    fetch(url).then((response) => {
       if (!response.ok) {
         throw new Error("No se pudo cargar el foro");
       }
       return response.json();
-    })
+    });
+
+  // 1) Archivo local generado por GitHub Actions (mismo dominio, sin CORS).
+  // 2) Si no existe, se intenta el foro en vivo (puede fallar por CORS).
+  loadJson("forum-latest.json")
+    .catch(() => loadJson(`${base}/latest.json`))
     .then((data) => {
       const topics = (data?.topic_list?.topics || [])
         .filter((topic) => !topic.pinned_globally)
