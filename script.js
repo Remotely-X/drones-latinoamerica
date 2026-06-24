@@ -113,9 +113,7 @@ if (forumList) {
   loadJson("forum-latest.json")
     .catch(() => loadJson(`${base}/latest.json`))
     .then((data) => {
-      const topics = (data?.topic_list?.topics || [])
-        .filter((topic) => !topic.pinned_globally)
-        .slice(0, 5);
+      const topics = (data?.topic_list?.topics || []).slice(0, 6);
 
       if (!topics.length) {
         throw new Error("Sin temas");
