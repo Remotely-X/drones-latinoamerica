@@ -2640,7 +2640,7 @@ input {
   margin-top: 22px;
 }
 
-.video-grid.is-collapsed > .video-card:nth-child(n + 4),
+.video-grid.is-collapsed > .video-card.is-over-limit,
 .news-grid.is-collapsed > .news-card:nth-child(n + 4),
 .community-links-grid.is-collapsed > .community-link-card:nth-child(n + 5) {
   display: none;

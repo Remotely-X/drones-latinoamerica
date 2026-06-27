@@ -154,10 +154,63 @@ if (forumList) {
     });
 }
 
+const videoFilterButtons = document.querySelectorAll("[data-video-filter]");
+const videosGrid = document.getElementById("videos-grid");
+const videoCards = videosGrid?.querySelectorAll("[data-video-category]");
+const videoEmptyMessage = document.querySelector("[data-video-empty]");
+const videosSeeMoreButton = document.querySelector('[data-see-more="videos-grid"]');
+let activeVideoCategory = "drones";
+let areVideosExpanded = false;
+
+const updateVideosSeeMoreState = (visibleCount) => {
+  if (!videosSeeMoreButton) {
+    return;
+  }
+
+  videosSeeMoreButton.parentElement?.toggleAttribute("hidden", visibleCount <= 3);
+  videosSeeMoreButton.setAttribute("aria-expanded", String(areVideosExpanded));
+  videosSeeMoreButton.textContent = areVideosExpanded
+    ? videosSeeMoreButton.dataset.labelLess || "Ver menos"
+    : videosSeeMoreButton.dataset.labelMore || "Ver todos los videos";
+};
+
+const applyVideoFilter = (category, { keepExpanded = false } = {}) => {
+  if (!videosGrid || !videoCards) {
+    return;
+  }
+
+  activeVideoCategory = category;
+  if (!keepExpanded) {
+    areVideosExpanded = false;
+  }
+
+  let visibleCount = 0;
+  videoCards.forEach((card) => {
+    const isVisible = card.getAttribute("data-video-category") === category;
+    card.classList.toggle("is-hidden", !isVisible);
+    if (isVisible) {
+      visibleCount += 1;
+      card.classList.toggle("is-over-limit", visibleCount > 3);
+    } else {
+      card.classList.remove("is-over-limit");
+    }
+  });
+
+  videosGrid.classList.toggle("is-collapsed", !areVideosExpanded);
+  videoEmptyMessage?.toggleAttribute("hidden", visibleCount > 0);
+  updateVideosSeeMoreState(visibleCount);
+};
+
 document.querySelectorAll("[data-see-more]").forEach((button) => {
   button.addEventListener("click", () => {
     const grid = document.getElementById(button.getAttribute("data-see-more"));
     if (!grid) {
+      return;
+    }
+
+    if (grid === videosGrid) {
+      areVideosExpanded = !areVideosExpanded;
+      applyVideoFilter(activeVideoCategory, { keepExpanded: true });
       return;
     }
 
@@ -168,37 +221,6 @@ document.querySelectorAll("[data-see-more]").forEach((button) => {
       : button.dataset.labelLess;
   });
 });
-
-const videoFilterButtons = document.querySelectorAll("[data-video-filter]");
-const videosGrid = document.getElementById("videos-grid");
-const videoCards = videosGrid?.querySelectorAll("[data-video-category]");
-const videoEmptyMessage = document.querySelector("[data-video-empty]");
-const videosSeeMoreButton = document.querySelector('[data-see-more="videos-grid"]');
-
-const applyVideoFilter = (category) => {
-  if (!videosGrid || !videoCards) {
-    return;
-  }
-
-  let visibleCount = 0;
-  videoCards.forEach((card) => {
-    const isVisible = card.getAttribute("data-video-category") === category;
-    card.classList.toggle("is-hidden", !isVisible);
-    if (isVisible) {
-      visibleCount += 1;
-    }
-  });
-
-  const shouldCollapse = category === "drones";
-  videosGrid.classList.toggle("is-collapsed", shouldCollapse);
-  videoEmptyMessage?.toggleAttribute("hidden", visibleCount > 0);
-
-  if (videosSeeMoreButton) {
-    videosSeeMoreButton.parentElement?.toggleAttribute("hidden", !shouldCollapse || visibleCount <= 3);
-    videosSeeMoreButton.setAttribute("aria-expanded", "false");
-    videosSeeMoreButton.textContent = videosSeeMoreButton.dataset.labelMore || "Ver todos los videos";
-  }
-};
 
 videoFilterButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -217,4 +239,4 @@ videoFilterButtons.forEach((button) => {
   });
 });
 
-applyVideoFilter("drones");
+applyVideoFilter(activeVideoCategory);
