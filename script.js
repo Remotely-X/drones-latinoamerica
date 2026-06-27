@@ -168,3 +168,53 @@ document.querySelectorAll("[data-see-more]").forEach((button) => {
       : button.dataset.labelLess;
   });
 });
+
+const videoFilterButtons = document.querySelectorAll("[data-video-filter]");
+const videosGrid = document.getElementById("videos-grid");
+const videoCards = videosGrid?.querySelectorAll("[data-video-category]");
+const videoEmptyMessage = document.querySelector("[data-video-empty]");
+const videosSeeMoreButton = document.querySelector('[data-see-more="videos-grid"]');
+
+const applyVideoFilter = (category) => {
+  if (!videosGrid || !videoCards) {
+    return;
+  }
+
+  let visibleCount = 0;
+  videoCards.forEach((card) => {
+    const isVisible = card.getAttribute("data-video-category") === category;
+    card.classList.toggle("is-hidden", !isVisible);
+    if (isVisible) {
+      visibleCount += 1;
+    }
+  });
+
+  const shouldCollapse = category === "drones";
+  videosGrid.classList.toggle("is-collapsed", shouldCollapse);
+  videoEmptyMessage?.toggleAttribute("hidden", visibleCount > 0);
+
+  if (videosSeeMoreButton) {
+    videosSeeMoreButton.parentElement?.toggleAttribute("hidden", !shouldCollapse || visibleCount <= 3);
+    videosSeeMoreButton.setAttribute("aria-expanded", "false");
+    videosSeeMoreButton.textContent = videosSeeMoreButton.dataset.labelMore || "Ver todos los videos";
+  }
+};
+
+videoFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const category = button.getAttribute("data-video-filter");
+    if (!category) {
+      return;
+    }
+
+    videoFilterButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+
+    applyVideoFilter(category);
+  });
+});
+
+applyVideoFilter("drones");

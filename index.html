@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -468,8 +468,27 @@
             </div>
           </div>
 
+          <div class="video-category-tabs" aria-label="Categorías de videos recomendados">
+            <button class="video-category is-active" type="button" data-video-filter="drones" aria-pressed="true">
+              <span class="video-category-icon icon-drone" aria-hidden="true"></span>
+              Drones
+            </button>
+            <button class="video-category" type="button" data-video-filter="cohetes" aria-pressed="false">
+              <span class="video-category-icon icon-rocket" aria-hidden="true"></span>
+              Cohetes
+            </button>
+            <button class="video-category" type="button" data-video-filter="quimica" aria-pressed="false">
+              <span class="video-category-icon icon-flask" aria-hidden="true"></span>
+              Química
+            </button>
+            <button class="video-category" type="button" data-video-filter="variados" aria-pressed="false">
+              <span class="video-category-icon icon-grid" aria-hidden="true"></span>
+              Variados
+            </button>
+          </div>
+
           <div class="video-grid collapsible is-collapsed" id="videos-grid">
-            <a class="video-card" href="https://www.youtube.com/watch?v=S9dvDU5RmQU" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=S9dvDU5RmQU" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-S9dvDU5RmQU.jpg" alt="Video: How to Build a 5-Inch FPV Drone" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -481,7 +500,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=zf_58D6U-a0" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=zf_58D6U-a0" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-zf_58D6U-a0.jpg" alt="Video: Guía para la Construcción de Drones con Impresión 3D" loading="lazy" />
                 <span class="video-lang lang-es">Español</span>
@@ -493,7 +512,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=MBLD8sjiYiU" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=MBLD8sjiYiU" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-MBLD8sjiYiU.jpg" alt="Video: Raspberry Pi Flight Controller Hardware Review" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -505,7 +524,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=SfFl_-tof4Y" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=SfFl_-tof4Y" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-SfFl_-tof4Y.jpg" alt="Video: How to Build Ultimate Budget FPV Drone Build" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -517,7 +536,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=PlKeFj5teo4" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=PlKeFj5teo4" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-PlKeFj5teo4.jpg" alt="Video: The Difference Between a Drone Flight Controller and Flight Computer" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -529,7 +548,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=NliyFcAL8kg" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=NliyFcAL8kg" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-NliyFcAL8kg.jpg" alt="Video: Beginner's Tutorial Quadcopter Assembly" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -541,7 +560,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=Nrzs3dQ9exw&amp;t=226s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=Nrzs3dQ9exw&amp;t=226s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-Nrzs3dQ9exw.jpg" alt="Video: How Did I Use Python And AI To Create A Fully Autonomous Drone?" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -553,7 +572,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=cmkl0W-LqRk" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=cmkl0W-LqRk" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-cmkl0W-LqRk.jpg" alt="Video: 3D Printed VTOL Drone Full Build & Test Flight" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -565,7 +584,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=iEvjbwP2PnY&amp;t=50s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=iEvjbwP2PnY&amp;t=50s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-iEvjbwP2PnY.jpg" alt="Video: 3D Printed VTOL UAV Full Build & FPV Flight Test" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -577,7 +596,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=u_ArriXbrR0&amp;t=809s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=u_ArriXbrR0&amp;t=809s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-u_ArriXbrR0.jpg" alt="Video: Building a sub 250g Autonomous Drone with Ardupilot" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -589,7 +608,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=1KUkbKKXZqw&amp;t=399s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=1KUkbKKXZqw&amp;t=399s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-1KUkbKKXZqw.jpg" alt="Video: AI Said This Wing Is 27% More Efficient" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -601,7 +620,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=HU3YnVzqExA&amp;t=1396s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=HU3YnVzqExA&amp;t=1396s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-HU3YnVzqExA.jpg" alt="Video: I Broke the Sound Barrier with a 3D Printed Rocket" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -613,7 +632,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=rm_ZL623Lzg&amp;t=234s" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=rm_ZL623Lzg&amp;t=234s" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-rm_ZL623Lzg.jpg" alt="Video: Waypoint Guidance with an Amateur Rocket" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -625,7 +644,7 @@
               </div>
             </a>
 
-            <a class="video-card" href="https://www.youtube.com/watch?v=kEOgwi8QE9E" target="_blank" rel="noopener noreferrer">
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=kEOgwi8QE9E" target="_blank" rel="noopener noreferrer">
               <div class="video-thumb">
                 <img src="assets/yt-kEOgwi8QE9E.jpg" alt="Video: Modular 3D Printed Fixed-Wing Drone Falcon Long-Range Config" loading="lazy" />
                 <span class="video-lang lang-en">English</span>
@@ -636,7 +655,297 @@
                 <span>Ecosphere2</span>
               </div>
             </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=D3_zBNBu3qo&amp;t=5s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-D3_zBNBu3qo.jpg" alt="Video: Beginners guide to wiring the Stallion VTOL electronics Part 2" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Beginners guide to wiring the Stallion VTOL electronics Part 2</strong>
+                <span>The Homeboy Workshop</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=TZ_I9gQHgv4&amp;t=221s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-TZ_I9gQHgv4.jpg" alt="Video: How does an RC car work? Hobby Electronics Explained for Beginners" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How does an RC car work? Hobby Electronics Explained for Beginners!</strong>
+                <span>Hobbies Direct</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=l8VMZ1spTYY&amp;t=7s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-l8VMZ1spTYY.jpg" alt="Video: Top RC Transmitter to buy for the Beginners" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Top RC Transmitter to buy for the Beginners | AEROGO</strong>
+                <span>AEROGO | Aeromodelling</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=zf1eud0LRKc&amp;t=75s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-zf1eud0LRKc.jpg" alt="Video: Tutorial for RC Airplane Modeling Beginners" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Tutorial for RC Airplane Modeling Beginners. Basic Flight Training. Basic Settings</strong>
+                <span>RCMakerLab</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=bWcrSRq0LBY&amp;t=33s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-bWcrSRq0LBY.jpg" alt="Video: RC Electronics for Beginners" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>RC Electronics for Beginners</strong>
+                <span>ProjectAir 2</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=j61Q3e8AFR4&amp;t=15s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-j61Q3e8AFR4.jpg" alt="Video: RC Electronics for Noobs" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>RC Electronics for Noobs</strong>
+                <span>Samm Sheperd (SNRS)</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="drones" href="https://www.youtube.com/watch?v=1iUqn0owDJc&amp;t=2245s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-1iUqn0owDJc.jpg" alt="Video: I Tried Building a Mapping Drone for Large-Scale Photogrammetry" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>I Tried Building a Mapping Drone for Large-Scale Photogrammetry</strong>
+                <span>Pathfinder George</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=r2lDXoW78u0&amp;t=360s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-r2lDXoW78u0.jpg" alt="Video: How To Build A Rocket From Scratch" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How To Build A Rocket (From Scratch)</strong>
+                <span>TKOR</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=CnPJtfT_Xbo" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-CnPJtfT_Xbo.jpg" alt="Video: Sugar-Powered Rocket How I Made a Rocket with Sugar" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Sugar-Powered Rocket: How I Made a Rocket with Sugar!</strong>
+                <span>Skill Make</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=eVvIZ3f2tSU" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-eVvIZ3f2tSU.jpg" alt="Video: How To Design A Solid Rocket Motor Simplex Ep 1" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How To Design A Solid Rocket Motor - Simplex Ep 1</strong>
+                <span>BPS.space</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=ZQvK8EFJQzw" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-ZQvK8EFJQzw.jpg" alt="Video: ALL Carbon Fiber My Fastest Highest Craziest Rocket YET" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>ALL Carbon Fiber: My Fastest, Highest, Craziest Rocket YET!</strong>
+                <span>Xyla Foxlin</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=Ud8fyPsoGlY&amp;t=6s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-Ud8fyPsoGlY.jpg" alt="Video: How Hamas Makes Rockets against Israel Qassam" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How Hamas Makes Rockets against Israel | Qassam</strong>
+                <span>AiTelly</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=tWuXqjuadro" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-tWuXqjuadro.jpg" alt="Video: How I Make Actual Rocket Fuel Updated Method" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How I Make Actual Rocket Fuel (Updated Method)</strong>
+                <span>Aero Propulsions</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=g-ghTMfs2Ho&amp;t=6s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-g-ghTMfs2Ho.jpg" alt="Video: Launching a 3D Printed Rocket" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Launching a 3D Printed Rocket</strong>
+                <span>Peter Pak</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=uOOzzTUp6B0" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-uOOzzTUp6B0.jpg" alt="Video: I Built 5 High-Power Rocket Motors What Went Right and What Blew Up" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>I Built 5 High-Power Rocket Motors... What Went Right and What Blew Up</strong>
+                <span>Aero Propulsions</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=4WvhJx2sI_g&amp;t=12s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-4WvhJx2sI_g.jpg" alt="Video: Building a HIGH POWER Rocket" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Building a HIGH POWER Rocket</strong>
+                <span>Sydney Madueke</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=E8d_FfWH1Ss" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-E8d_FfWH1Ss.jpg" alt="Video: Can I Build a Missile for 100 dollars" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Can I Build a Missile for $100?</strong>
+                <span>Blytical</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=aXq2AdKqtJY&amp;t=239s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-aXq2AdKqtJY.jpg" alt="Video: How to Build a Rocket for L1 Certification" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How to Build a Rocket for L1 Certification (Vulpes II Rocket Launch)</strong>
+                <span>Graviton Media</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=uXChCWOAdVI&amp;t=637s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-uXChCWOAdVI.jpg" alt="Video: Building a High Power Rocket From Scratch" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Building a High Power Rocket From Scratch</strong>
+                <span>Con Hathy</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=4QsEPEhq5yk&amp;t=63s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-4QsEPEhq5yk.jpg" alt="Video: 56 Miles Above Earth Successful Amateur Rocket Launch" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>56 Miles (90 km) Above Earth - Successful Amateur Rocket Launch</strong>
+                <span>Kip Daugirdas</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="cohetes" href="https://www.youtube.com/watch?v=EjaoYGTinus&amp;t=12s" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-EjaoYGTinus.jpg" alt="Video: Making a High Speed Rocket" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Making a High Speed Rocket</strong>
+                <span>ProjectAir</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="quimica" href="https://www.youtube.com/watch?v=wRYP79P0arU" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-wRYP79P0arU.jpg" alt="Video: Así se creó el primer plástico de la historia la Baquelita" loading="lazy" />
+                <span class="video-lang lang-es">Español</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>Así se creó el primer plástico de la historia: la Baquelita</strong>
+                <span>Reacciona Explota</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="variados" href="https://www.youtube.com/watch?v=swCxVutEB0Q" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-swCxVutEB0Q.jpg" alt="Video: How to Build a High Performance RC Plane from a Plastic Bottles" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>How to Build a High Performance RC Plane from a Plastic Bottles</strong>
+                <span>Crazy Think</span>
+              </div>
+            </a>
+
+            <a class="video-card" data-video-category="variados" href="https://www.youtube.com/watch?v=7yVFZn87TkY" target="_blank" rel="noopener noreferrer">
+              <div class="video-thumb">
+                <img src="assets/yt-7yVFZn87TkY.jpg" alt="Video: I Built a Self Landing Satellite" loading="lazy" />
+                <span class="video-lang lang-en">English</span>
+                <span class="video-play" aria-hidden="true">▶</span>
+              </div>
+              <div class="video-body">
+                <strong>I Built a Self Landing Satellite</strong>
+                <span>I Build Stuff</span>
+              </div>
+            </a>
           </div>
+
+          <p class="video-empty-message" data-video-empty hidden>No hay videos en esta categoría todavía.</p>
 
           <div class="see-more-row">
             <button
@@ -905,3 +1214,4 @@
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f6743ff4270e4b03aa8d2a02ad3c1890"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
+
