@@ -2475,6 +2475,30 @@ input {
   transform: rotate(-8deg);
 }
 
+.icon-plane::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 8px;
+  width: 16px;
+  height: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-18deg);
+}
+
+.icon-plane::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: skewX(-22deg) rotate(-18deg);
+}
+
 .icon-flask::before {
   content: "";
   position: absolute;
