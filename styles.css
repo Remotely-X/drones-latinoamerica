@@ -2499,6 +2499,50 @@ input {
   transform: skewX(-22deg) rotate(-18deg);
 }
 
+.icon-ai::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 2px solid currentColor;
+  border-radius: 5px;
+}
+
+.icon-ai::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow:
+    -7px -7px 0 -3px currentColor,
+    7px -7px 0 -3px currentColor,
+    -7px 7px 0 -3px currentColor,
+    7px 7px 0 -3px currentColor;
+}
+
+.icon-printer::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 4px;
+  width: 14px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+}
+
+.icon-printer::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  bottom: 1px;
+  width: 8px;
+  height: 6px;
+  border: 2px solid currentColor;
+  border-top: 0;
+  box-shadow: 0 -12px 0 -3px currentColor;
+}
+
 .icon-flask::before {
   content: "";
   position: absolute;
