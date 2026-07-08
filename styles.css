@@ -2629,39 +2629,6 @@ input {
   display: block;
 }
 
-.social-thumb {
-  display: grid;
-  place-items: center;
-  gap: 8px;
-  color: var(--white);
-  background:
-    linear-gradient(135deg, rgba(126, 211, 33, 0.28), transparent 42%),
-    linear-gradient(145deg, #111923, #050b0f 58%, #192026);
-}
-
-.instagram-thumb {
-  border-bottom: 1px solid rgba(126, 211, 33, 0.18);
-}
-
-.social-mark {
-  display: grid;
-  place-items: center;
-  width: 62px;
-  height: 62px;
-  border: 2px solid rgba(255, 255, 255, 0.82);
-  border-radius: 18px;
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-}
-
-.social-code {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
 .video-lang {
   position: absolute;
   top: 10px;
@@ -2743,6 +2710,7 @@ input {
 
 .video-grid.is-collapsed > .video-card.is-over-limit,
 .news-grid.is-collapsed > .news-card:nth-child(n + 4),
+.docs-grid.is-collapsed > .doc-card:nth-child(n + 4),
 .community-links-grid.is-collapsed > .community-link-card:nth-child(n + 5) {
   display: none;
 }
