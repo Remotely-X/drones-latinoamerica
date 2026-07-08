@@ -2715,6 +2715,10 @@ input {
   display: none;
 }
 
+.guides-manuals-section .docs-grid.is-collapsed > .doc-card.doc-extra {
+  display: none !important;
+}
+
 .form-section {
   max-width: 820px;
   margin: 8px auto 0;
