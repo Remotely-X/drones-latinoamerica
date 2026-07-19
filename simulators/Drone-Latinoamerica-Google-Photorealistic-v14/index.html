@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Drone Latinoamérica V14 · Google Photorealistic 3D Tiles</title>
+
+  <script>
+    window.CESIUM_BASE_URL = "https://cesium.com/downloads/cesiumjs/releases/1.143/Build/Cesium/";
+  </script>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.143/Build/Cesium/Cesium.js"></script>
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.143/Build/Cesium/Widgets/widgets.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <section id="setup" class="overlay">
+    <div class="card setup-card">
+      <div class="badge">DRONE LATINOAMÉRICA · FOTOREALISTA</div>
+      <h1>Vuela ciudades reales en 3D</h1>
+      <p>
+        Carga <strong>Google Photorealistic 3D Tiles</strong> y vuela una misión de aros sobre ciudades reales.
+        Esta versión inicia a <strong>150 m sobre el suelo de referencia</strong>, muestra el dron,
+        aros 3D grandes colocados sobre azoteas y una vista de mapa de ruta a pantalla completa.
+      </p>
+
+      <label for="apiKey">Google Maps Platform API key</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="Pega aquí tu API key de Map Tiles API" />
+
+      <div class="row location-row">
+        <label class="mini">
+          País
+          <select id="countrySelect"></select>
+        </label>
+        <label class="mini">
+          Ciudad
+          <select id="citySelect"></select>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="mini">
+          Altura inicial sobre la superficie (m)
+          <input id="startHeight" type="number" value="150" min="30" max="500" step="10" />
+        </label>
+        <label class="mini">
+          Calidad visual
+          <select id="quality">
+            <option value="8" selected>Alta · más detalle</option>
+            <option value="12">Equilibrada</option>
+            <option value="20">Rápida · más FPS</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="locationHint" class="location-hint"></div>
+
+      <div class="route-editor-wrap">
+        <div class="route-editor-head">
+          <strong>Colocación de aros</strong>
+          <span>Elige automático o manual antes de cargar la ciudad.</span>
+        </div>
+
+        <label class="mini">
+          Modo de colocación
+          <select id="placementMode">
+            <option value="auto" selected>Colocar aros automáticamente</option>
+            <option value="manual">Colocar aros manualmente</option>
+          </select>
+        </label>
+
+        <div id="autoPlacementPanel" class="placement-panel">
+          <label class="mini">
+            Cantidad de aros
+            <input id="autoRingCount" type="number" value="8" min="1" max="20" step="1" />
+          </label>
+          <p class="small">El juego crea y posiciona automáticamente esa cantidad de aros sobre la ciudad.</p>
+        </div>
+
+        <div id="manualPlacementPanel" class="placement-panel" hidden>
+          <div class="manual-toolbar">
+            <div>
+              <strong>Ruta manual</strong>
+              <span>Escribe latitud, longitud y altura sobre el suelo para cada aro.</span>
+            </div>
+            <button id="addRingBtn" type="button">+ Add aro</button>
+          </div>
+
+          <div class="manual-ring-head">
+            <span>Aro</span><span>Latitud</span><span>Longitud</span><span>Altura (m)</span><span></span>
+          </div>
+          <div id="manualRingList"></div>
+        </div>
+      </div>
+
+      <button id="startBtn">CARGAR CIUDAD 3D Y DESPEGAR</button>
+      <p class="small">
+        Necesitas <b>Map Tiles API</b> habilitada y facturación activa en Google Maps Platform.
+        Los Photorealistic 3D Tiles disponibles dependen de la cobertura de Google para cada ciudad.
+      </p>
+      <label class="remember"><input id="rememberKey" type="checkbox" /> Recordar la clave en este navegador</label>
+      <div id="setupError" class="error" hidden></div>
+    </div>
+  </section>
+
+  <section id="loading" class="overlay" hidden>
+    <div class="card loading-card">
+      <div class="spinner"></div>
+      <h2 id="loadingTitle">Cargando ciudad fotorealista…</h2>
+      <p id="loadingText">Conectando con Google Photorealistic 3D Tiles.</p>
+      <div class="loading-progress">
+        <div class="loading-progress-track"><div id="loadingProgressFill"></div></div>
+        <strong id="loadingProgressText">0%</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="hud" hidden>
+    <div class="left-column">
+      <div class="panel coordinates">
+        <div class="eyebrow">POSICIÓN DEL DRON</div>
+        <strong id="coords">0.000000, 0.000000</strong>
+        <span id="cityHud">Ciudad</span>
+        <span id="altitude">Altura: 0 m</span>
+        <span id="speed">Velocidad: 0 km/h</span>
+      </div>
+
+      <div class="panel objective">
+        <div class="eyebrow">MISIÓN</div>
+        <strong id="objective">ARO 1 · 200 m</strong>
+        <span id="progress">0 / 8 aros</span>
+      </div>
+
+      <div class="panel compass-panel">
+        <div class="eyebrow">BRÚJULA</div>
+        <div class="compass-row">
+          <div class="compass" aria-label="Brújula de vuelo">
+            <span class="cardinal north">N</span>
+            <span class="cardinal east">E</span>
+            <span class="cardinal south">S</span>
+            <span class="cardinal west">O</span>
+            <div class="compass-ring"></div>
+            <div id="headingNeedle" class="needle heading-needle"><i></i></div>
+            <div id="targetNeedle" class="needle target-needle"><i></i></div>
+            <b class="compass-center"></b>
+          </div>
+          <div class="compass-data">
+            <strong id="compassHeading">N · 000°</strong>
+            <span id="targetBearing">OBJ · 000°</span>
+            <small>amarillo = aro actual</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="top-actions">
+      <button id="mapViewBtn" title="Ver mapa de ruta a pantalla completa">🗺 Mapa de ruta</button>
+      <button id="soundBtn" title="Sonido">🔊 Sonido ON</button>
+      <button id="cameraBtn" title="Cambiar cámara">🎥 Tercera persona</button>
+      <button id="settingsBtn" title="Cambiar ciudad o API key">⚙</button>
+    </div>
+
+    <div id="qualityStatus" class="quality-status">DETALLE 3D ALTO</div>
+    <div id="centerMessage" class="center-message" hidden></div>
+
+    <div class="controls">
+      <span><kbd>↑</kbd><kbd>↓</kbd> avanzar / retroceder</span>
+      <span><kbd>←</kbd><kbd>→</kbd> girar izquierda / derecha</span>
+      <span><kbd>A</kbd><kbd>D</kbd> roll lateral</span>
+      <span><kbd>W</kbd><kbd>S</kbd> subir / bajar</span>
+      <span><kbd>SHIFT</kbd> turbo · <kbd>SPACE</kbd> freno</span>
+      <span><kbd>C</kbd> cámara</span>
+      <span><kbd>M</kbd> mapa</span>
+      <span><kbd>R</kbd> reiniciar</span>
+    </div>
+
+    <div class="mini-route-panel panel" aria-label="Minimapa de ruta">
+      <div class="mini-route-head">
+        <span class="eyebrow">MINIMAPA</span>
+        <strong>RUTA REAL</strong>
+      </div>
+      <canvas id="miniRouteCanvas" width="250" height="190"></canvas>
+      <div class="mini-route-note">cian = dron · amarillo = objetivo · verde = logrado</div>
+    </div>
+
+    <div class="crosshair" aria-hidden="true"><i></i><b></b></div>
+  </section>
+
+
+  <section id="routeView" class="route-view" hidden>
+    <div class="route-map-toolbar">
+      <div>
+        <div class="eyebrow">MAPA DE RUTA · VISTA COMPLETA</div>
+        <strong id="routeMapCity">Ciudad</strong>
+        <span id="routeMapStatus">ARO 1 · objetivo actual</span>
+      </div>
+      <div class="route-map-actions">
+        <button id="fitRouteBtn" type="button" title="Mostrar toda la ruta">⌖ Ver toda la ruta</button>
+        <button id="closeMapBtn" type="button">🚁 Volver al vuelo</button>
+      </div>
+    </div>
+    <div id="routeMap" aria-label="Mapa de ruta a pantalla completa"></div>
+    <div class="route-map-legend">
+      <span><i class="dot drone-dot"></i>Dron</span>
+      <span><i class="dot target-dot"></i>Aro actual</span>
+      <span><i class="dot future-dot"></i>Siguientes aros</span>
+      <span><kbd>M</kbd> cambiar mapa / vuelo</span>
+    </div>
+  </section>
+
+  <script src="./app.js"></script>
+</body>
+</html>

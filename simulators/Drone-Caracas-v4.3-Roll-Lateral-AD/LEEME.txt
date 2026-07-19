@@ -1,0 +1,44 @@
+DRONE CARACAS V4.3 - ROLL LATERAL A/D
+==========================================
+
+
+NUEVO EN ESTA VERSIÓN
+- A = desplazamiento lateral hacia la izquierda (roll).
+- D = desplazamiento lateral hacia la derecha (roll).
+- El dron se inclina visualmente hacia el lado correspondiente al desplazarse.
+- Las flechas izquierda/derecha siguen controlando el giro (yaw), no el movimiento lateral.
+
+CORRECCIONES DE ESTA VERSIÓN
+- Se corrigió el aro Nº 2: antes quedaba elevado/oculto por la zona de la Torre La Previsora.
+- El aro Nº 2 ahora está en una ruta despejada y visible después de cruzar el aro Nº 1.
+- El aro activo es más grande y brillante para que sea fácil encontrarlo.
+- Ya no necesitas ejecutar ningún archivo BAT ni un servidor local.
+
+CÓMO INICIAR
+1. Descomprime el ZIP.
+2. Haz doble clic en index.html.
+3. Pulsa DESPEGAR.
+
+CONTROLES
+↑  Avanzar
+↓  Retroceder
+←  Girar a la izquierda
+→  Girar a la derecha
+A  Desplazarse lateralmente a la izquierda (roll)
+D  Desplazarse lateralmente a la derecha (roll)
+W  Subir
+S  Bajar
+SHIFT  Turbo
+SPACE  Freno / estabilizar
+C  Cambiar cámara
+M  Sonido
+R  Reiniciar
+F  Pantalla completa
+
+CARACTERÍSTICAS
+- Funciona completamente local desde index.html.
+- Dron visible en tercera persona y cámara FPV.
+- Aros numerados en ruta despejada.
+- Colisiones con edificios, estructuras, suelo y Ávila.
+- Brújula y objetivo de rumbo.
+- Sonido procedural local.

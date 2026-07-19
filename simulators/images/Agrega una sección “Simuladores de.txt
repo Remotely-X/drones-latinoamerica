@@ -1,0 +1,9 @@
+Agrega una sección “Simuladores de Drones” manteniendo el diseño actual de mi web. Debe tener solo 3 tarjetas:
+
+Prueba el juego gratis — botón “Probar gratis ahora”.
+Simulador con Google Photorealistic 3D Tiles — botón “Abrir simulador”.
+Simulador Profesional, ubicado a la derecha — botón “Preguntar por venta”.
+
+Además, agrega un pequeño bloque que diga “¿Necesitas un simulador personalizado?”, explicando que hacemos simuladores con maquetado personalizado de ciudades o escenarios, con botón “Pedir presupuesto”.
+
+Mantén los colores verde, negro y blanco, tarjetas modernas, responsive y sin modificar las demás secciones de la web.  agrega los simuladores C:\Users\vasqu\Desktop\AgendaApps\droneslatinoamerica\simulators  y te adjunte la imagen par a Prueba el juego gratis y Simulador con Google Photoealistic 

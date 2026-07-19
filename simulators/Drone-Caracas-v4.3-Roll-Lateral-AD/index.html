@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#6ea9ca" />
+  <title>Drone Caracas V4.3 · Roll lateral A/D</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game-canvas" aria-label="Juego 3D de dron sobre una maqueta reconocible de Caracas"></canvas>
+    <div class="vignette"></div>
+    <div id="impact-flash" class="impact-flash"></div>
+
+    <section id="hud" hidden>
+      <div class="panel location-panel">
+        <span class="eyebrow">Zona de vuelo</span>
+        <strong id="zone-name">Valle de Caracas</strong>
+      </div>
+
+      <div class="compass-wrap" aria-label="Brújula de vuelo">
+        <div class="compass-label">BRÚJULA</div>
+        <div class="compass">
+          <div id="compass-rose" class="compass-rose">
+            <b class="north">N</b><b class="east">E</b><b class="south">S</b><b class="west">O</b>
+            <i class="tick t0"></i><i class="tick t45"></i><i class="tick t90"></i><i class="tick t135"></i>
+            <i class="tick t180"></i><i class="tick t225"></i><i class="tick t270"></i><i class="tick t315"></i>
+          </div>
+          <span class="compass-pointer">▲</span>
+        </div>
+        <div class="compass-readout"><strong id="compass-heading">000° N</strong><span id="target-bearing">OBJ 000°</span></div>
+      </div>
+
+      <div class="panel stats-panel">
+        <div><span>ALTURA</span><strong id="altitude">0 m</strong></div>
+        <div><span>VELOCIDAD</span><strong id="speed">0 km/h</strong></div>
+        <div><span>BATERÍA</span><strong id="battery">100%</strong></div>
+        <div><span>PUNTOS</span><strong id="score">0</strong></div>
+      </div>
+
+      <div class="panel mission-panel">
+        <span class="eyebrow">Misión actual</span>
+        <strong id="mission-title">Ruta aérea segura</strong>
+        <p id="mission-text">Sigue los aros 1 → 10. Los edificios, estructuras y la montaña son sólidos.</p>
+        <div class="progress"><i id="mission-progress"></i></div>
+        <small id="mission-count">0 / 10 aros</small>
+      </div>
+
+      <button id="sound-button" class="hud-button sound-button" type="button" aria-pressed="true">🔊 Sonido</button>
+      <button id="camera-button" class="hud-button camera-button" type="button">🎥 Tercera persona</button>
+
+      <div class="crosshair" aria-hidden="true"><i></i><b></b></div>
+      <div id="message" class="message" hidden></div>
+      <div id="warning" class="warning" hidden></div>
+
+      <div class="controls-mini">
+        <span><kbd>↑ / ↓</kbd> avanzar / retroceder</span>
+        <span><kbd>← / →</kbd> girar</span>
+        <span><kbd>A / D</kbd> desplazamiento lateral (roll)</span>
+        <span><kbd>W / S</kbd> subir / bajar</span>
+        <span><kbd>SPACE</kbd> freno</span>
+        <span><kbd>SHIFT</kbd> turbo</span>
+        <span><kbd>C</kbd> cámara</span>
+        <span><kbd>M</kbd> sonido</span>
+        <span><kbd>R</kbd> reiniciar</span>
+      </div>
+    </section>
+
+    <section id="start-screen" class="start-screen">
+      <div class="hero-card">
+        <span class="chapter">DRONE CARACAS · V4.3 · MOVIMIENTO LATERAL</span>
+        <h1>Vuelo sobre<br><em>el Valle</em></h1>
+        <p>Una maqueta 3D inspirada en la geografía visual de Caracas: Waraira Repano, Parque Central, Plaza Venezuela, UCV, Chacao, Altamira, Parque del Este, río Guaire y autopista.</p>
+        <div class="feature-line">
+          <span>🏢 Colisiones reales</span><span>🧭 Brújula</span><span>🚁 Física mejorada</span><span>🎥 FPV</span>
+        </div>
+        <div class="controls-grid">
+          <div><kbd>↑ / ↓</kbd><span>Avanzar / retroceder</span></div>
+          <div><kbd>← / →</kbd><span>Girar izquierda / derecha</span></div>
+          <div><kbd>A / D</kbd><span>Roll lateral izquierda / derecha</span></div>
+          <div><kbd>W / S</kbd><span>Subir / bajar</span></div>
+          <div><kbd>SHIFT / SPACE</kbd><span>Turbo / freno</span></div>
+        </div>
+        <button id="start-button">DESPEGAR <span>→</span></button>
+        <small>Para jugar, haz doble clic directamente en <b>index.html</b>. No necesita servidor ni Internet. El sonido comienza después de pulsar DESPEGAR.</small>
+      </div>
+    </section>
+
+    <section id="finish-screen" class="finish-screen" hidden>
+      <div class="hero-card finish-card">
+        <span class="chapter">MISIÓN COMPLETADA</span>
+        <h2>¡Ruta completada!</h2>
+        <p id="finish-score">Puntuación: 0</p>
+        <button id="restart-button">VOLVER A VOLAR</button>
+      </div>
+    </section>
+
+    <section id="webgl-error" class="error" hidden>
+      <h2>No se pudo iniciar el modo 3D</h2>
+      <p>Activa la aceleración gráfica del navegador y vuelve a abrir el juego.</p>
+    </section>
+  </main>
+  <script src="./assets/vendor/three.min.js"></script>
+  <script src="./game.js"></script>
+</body>
+</html>

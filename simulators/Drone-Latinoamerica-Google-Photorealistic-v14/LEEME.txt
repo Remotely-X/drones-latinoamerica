@@ -1,0 +1,70 @@
+DRONE LATINOAMÉRICA - GOOGLE PHOTOREALISTIC 3D TILES
+=====================================================
+
+NOVEDADES DE ESTA VERSIÓN
+- Aros reconstruidos: ahora son aros 3D gruesos y luminosos, con halo de respaldo siempre visible.
+- La detección de paso por aro ahora comprueba el cruce real del plano del aro entre un frame y el siguiente, evitando que un vuelo rápido se salte el checkpoint.
+- Cada aro está orientado perpendicularmente a la dirección de la ruta.
+- Amarillo = aro objetivo actual; naranja = siguientes.
+- Aro 1 situado exactamente a 200 m delante del punto de inicio.
+- El mapa ya NO ocupa un panel pequeño a la izquierda. Ahora hay un botón "Mapa de ruta" que cambia a una vista de mapa A PANTALLA COMPLETA.
+- En la vista de mapa se ven dron, ruta completa, aros numerados y línea hacia el objetivo actual.
+- Pulsa M para alternar rápidamente entre vuelo y mapa.
+- Inicio predeterminado: aproximadamente 150 m sobre la superficie. Se usan varias muestras cercanas para evitar confundir una azotea alta con el suelo.
+- El dron se mantiene visible en tercera persona con modelo 3D + marcador visual.
+- Brújula con rumbo del dron y dirección del aro objetivo.
+- Selector de 5 países y 15 ciudades de Latinoamérica:
+  Venezuela: Caracas, Maracaibo, Valencia
+  Colombia: Bogotá, Medellín, Cartagena
+  México: Ciudad de México, Guadalajara, Monterrey
+  Argentina: Buenos Aires, Córdoba, Mendoza
+  Brasil: São Paulo, Río de Janeiro, Brasilia
+- Calidad visual predeterminada ALTA.
+- Puedes bajar con S hasta unos 2.5 m sobre la superficie detectada.
+
+CÓMO ABRIR
+1. Descomprime el ZIP.
+2. Abre index.html en Chrome o Edge.
+3. Pega tu Google Maps Platform API Key con Map Tiles API habilitada.
+4. Selecciona país y ciudad.
+5. Deja 150 m como altura inicial o cambia el valor.
+6. Pulsa CARGAR CIUDAD 3D Y DESPEGAR.
+
+CONTROLES
+W / S       Avanzar / retroceder
+A / D       Movimiento lateral (roll)
+Q / E       Girar (yaw)
+SPACE       Subir
+CTRL        Bajar
+SHIFT       Turbo
+C           Cambiar Tercera persona / FPV
+M           Cambiar Vista de vuelo / Mapa de ruta a pantalla completa
+R           Reiniciar misión
+ESC         Volver del mapa al vuelo
+
+NOTAS
+- La calidad y disponibilidad de edificios 3D depende de la cobertura de Google en cada ciudad.
+- Si una ciudad tarda en verse nítida, espera unos segundos sin moverte para que cargue el nivel de detalle alto.
+- El mapa usa OpenStreetMap y requiere conexión a Internet.
+- No publiques una API key sin restricciones en un sitio público.
+
+
+V6: inicio corregido a 150 m AGL, aros casi nivelados y deteccion de paso reforzada. Los aros completados quedan verdes.
+
+
+V7:
+- Lechería (Anzoátegui), Venezuela es la ciudad predeterminada.
+- Aros 50% más grandes y numerados.
+- Aros colocados bajos; cada aro sube automáticamente si detecta edificios debajo.
+- Mira + blanca más cerca/delante del dron en tercera persona.
+
+V8:
+- Lechería inicia en una zona urbana y la ruta recorre la ciudad, no el mar.
+- El dron inicia orientado hacia el primer aro; las flechas izquierda/derecha giran visiblemente el dron y la cámara.
+- Primer aro a 200 m exactamente delante del dron.
+
+
+V9:
+- El marcador visual del dron ya no aparece girado/de lado en tercera persona.
+- Los aros buscan una azotea cercana y se colocan apenas por encima del techo.
+- El aro 1 conserva aproximadamente 200 m hacia delante y solo puede correrse lateralmente para buscar una azotea.
