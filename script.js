@@ -240,3 +240,36 @@ videoFilterButtons.forEach((button) => {
 });
 
 applyVideoFilter(activeVideoCategory);
+
+const quoteForm = document.querySelector(".site-form");
+if (quoteForm) {
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get("asunto");
+  const service = params.get("servicio");
+
+  if (subject) {
+    const subjectInput = quoteForm.querySelector('input[name="_subject"]');
+    if (subjectInput) {
+      subjectInput.value = subject;
+    }
+  }
+
+  if (service) {
+    const serviceInput = quoteForm.querySelector('input[name="Curso o servicio de interés"]');
+    const messageInput = quoteForm.querySelector('textarea[name="Mensaje"]');
+
+    if (serviceInput && !serviceInput.value) {
+      serviceInput.value = service;
+    }
+
+    if (messageInput && !messageInput.value) {
+      messageInput.value = [
+        `Tipo de proyecto: ${service}`,
+        "Objetos que necesita detectar:",
+        "Plataforma: navegador / computadora / Raspberry Pi / Jetson / dron / robot / cámara de tráfico / otra",
+        "Descripción del proyecto:",
+        "Presupuesto aproximado:"
+      ].join("\n");
+    }
+  }
+}

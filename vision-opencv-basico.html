@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo OpenCV Básico | Drones Latinoamérica</title>
+    <meta
+      name="description"
+      content="Demo de visión artificial con webcam para reconocer cuadrados, círculos y triángulos dibujados en papel."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="vision-demo.css" />
+  </head>
+  <body class="vision-demo-page">
+    <header class="site-header course-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Drones Latinoamérica">
+        <img class="brand-logo" src="assets/logo-drones-latinoamerica.png" alt="DRONES LATINOAMÉRICA" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegación principal" data-nav>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#simuladores-drones">Simuladores</a>
+        <a href="index.html#vision-artificial" class="is-active">Visión Artificial</a>
+        <a href="index.html#cursos">Cursos</a>
+        <a href="index.html#marketplace">Marketplace</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="index.html#vision-artificial">Volver</a>
+      </div>
+    </header>
+
+    <main class="vision-demo-main">
+      <div class="container">
+        <div class="vision-demo-intro">
+          <p class="section-kicker">OpenCV Básico</p>
+          <h1>Reconocimiento de figuras con webcam</h1>
+          <p>
+            Activa tu cámara, muestra una hoja con un cuadrado, círculo o triángulo dibujado con buen contraste y
+            mueve la hoja para probar el seguimiento.
+          </p>
+          <span class="privacy-note">Tu cámara se procesa localmente. El video no se almacena ni se envía a nuestros servidores.</span>
+        </div>
+
+        <div class="vision-demo-layout">
+          <section>
+            <div class="camera-stage" aria-label="Vista de cámara con detección OpenCV">
+              <video id="camera-video" playsinline muted></video>
+              <canvas id="output-canvas"></canvas>
+              <canvas id="work-canvas"></canvas>
+            </div>
+
+            <div class="demo-controls">
+              <button class="btn btn-primary" type="button" id="start-camera">Activar cámara</button>
+              <button class="btn btn-ghost" type="button" id="pause-camera">Pausar</button>
+              <button class="btn btn-ghost" type="button" id="stop-camera">Detener cámara</button>
+              <button class="btn btn-ghost" type="button" id="switch-camera">Cambiar cámara</button>
+              <label class="demo-toggle">
+                <input type="checkbox" id="toggle-contours" checked />
+                Mostrar contornos
+              </label>
+            </div>
+            <div class="demo-mode-group" aria-label="Figura esperada">
+              <span>Figura:</span>
+              <button class="demo-mode-button is-active" type="button" data-shape-target="auto">Auto</button>
+              <button class="demo-mode-button" type="button" data-shape-target="square">Cuadrado</button>
+              <button class="demo-mode-button" type="button" data-shape-target="circle">Círculo</button>
+              <button class="demo-mode-button" type="button" data-shape-target="triangle">Triángulo</button>
+            </div>
+          </section>
+
+          <aside class="demo-panel" aria-label="Datos de reconocimiento">
+            <h2>Reconocimiento</h2>
+            <div class="demo-status" id="demo-status">La cámara está detenida.</div>
+            <div class="readout-grid">
+              <span>Figura detectada <strong id="detected-shape">Figura no reconocida</strong></span>
+              <span>Confianza <strong id="detected-confidence">0%</strong></span>
+              <span>Centro X/Y <strong id="detected-position">-</strong></span>
+              <span>Estado <strong id="tracking-status">SIN SEGUIMIENTO</strong></span>
+              <span>FPS <strong id="fps-value">0</strong></span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="vision-webcam.js"></script>
+    <script src="vision-opencv-demo.js"></script>
+  </body>
+</html>

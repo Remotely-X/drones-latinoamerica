@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo YOLO + OpenCV | Drones Latinoamérica</title>
+    <meta
+      name="description"
+      content="Estructura de demo YOLO + OpenCV con webcam y configuración para modelo local de detección de objetos."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="vision-demo.css" />
+  </head>
+  <body class="vision-demo-page">
+    <header class="site-header course-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Drones Latinoamérica">
+        <img class="brand-logo" src="assets/logo-drones-latinoamerica.png" alt="DRONES LATINOAMÉRICA" />
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegación principal" data-nav>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#simuladores-drones">Simuladores</a>
+        <a href="index.html#vision-artificial" class="is-active">Visión Artificial</a>
+        <a href="index.html#cursos">Cursos</a>
+        <a href="index.html#marketplace">Marketplace</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="index.html#vision-artificial">Volver</a>
+      </div>
+    </header>
+
+    <main class="vision-demo-main">
+      <div class="container">
+        <div class="vision-demo-intro">
+          <p class="section-kicker">YOLO + OpenCV</p>
+          <h1>Detección y seguimiento de objetos</h1>
+          <p>
+            Esta demo carga un detector real en el navegador para reconocer tazas, carros y aviones desde la webcam.
+            La ruta local queda lista para reemplazarlo por un modelo YOLO entrenado a medida.
+          </p>
+          <span class="privacy-note">Tu cámara se procesa localmente. El video no se almacena ni se envía a nuestros servidores.</span>
+        </div>
+
+        <div class="vision-demo-layout">
+          <section>
+            <div class="camera-stage" aria-label="Vista de cámara preparada para YOLO y OpenCV">
+              <video id="camera-video" playsinline muted></video>
+              <canvas id="output-canvas"></canvas>
+            </div>
+
+            <div class="demo-controls">
+              <button class="btn btn-primary" type="button" id="start-camera">Activar cámara</button>
+              <button class="btn btn-ghost" type="button" id="load-model">Cargar modelo</button>
+              <button class="btn btn-ghost" type="button" id="pause-camera">Pausar</button>
+              <button class="btn btn-ghost" type="button" id="stop-camera">Detener cámara</button>
+              <button class="btn btn-ghost" type="button" id="switch-camera">Cambiar cámara</button>
+            </div>
+            <div class="demo-mode-group" aria-label="Objeto esperado">
+              <span>Objeto:</span>
+              <button class="demo-mode-button is-active" type="button" data-object-target="auto">Auto</button>
+              <button class="demo-mode-button" type="button" data-object-target="car">Carro</button>
+              <button class="demo-mode-button" type="button" data-object-target="plane">Avión</button>
+              <button class="demo-mode-button" type="button" data-object-target="cup">Taza</button>
+            </div>
+          </section>
+
+          <aside class="demo-panel" aria-label="Datos de detección YOLO">
+            <h2>Detección y tracking</h2>
+            <div class="demo-status" id="demo-status">Activa la cámara para cargar el detector en el navegador.</div>
+            <div class="readout-grid">
+              <span>Objeto detectado <strong id="detected-object">Modelo no cargado</strong></span>
+              <span>Confianza <strong id="detected-confidence">-</strong></span>
+              <span>Centro X/Y <strong id="detected-position">-</strong></span>
+              <span>Estado <strong id="tracking-status">ESPERANDO MODELO</strong></span>
+              <span>FPS <strong id="fps-value">0</strong></span>
+            </div>
+            <div class="model-note">
+              Ruta configurada:
+              <code id="model-path">/models/object-detector/</code>
+              <br />
+              La demo usa un modelo real de detección en navegador. Para YOLO personalizado, coloca aquí tu modelo
+              entrenado y conecta el loader en <code>vision-yolo-demo.js</code>.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="vision-webcam.js"></script>
+    <script src="vision-yolo-demo.js"></script>
+  </body>
+</html>

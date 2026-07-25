@@ -1,0 +1,235 @@
+.vision-demo-page {
+  min-height: 100vh;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(126, 211, 33, 0.14), transparent 28%),
+    linear-gradient(135deg, #071014, #050b0f 62%, #07141a);
+}
+
+.vision-demo-main {
+  padding: 116px 0 56px;
+}
+
+.vision-demo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 420px);
+  gap: 24px;
+  align-items: start;
+}
+
+.vision-demo-intro {
+  margin-bottom: 22px;
+}
+
+.vision-demo-intro h1 {
+  margin: 6px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.02;
+}
+
+.vision-demo-intro p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.6;
+}
+
+.privacy-note {
+  display: inline-flex;
+  margin-top: 14px;
+  padding: 10px 14px;
+  color: #dfffd1;
+  border: 1px solid rgba(126, 211, 33, 0.28);
+  border-radius: 8px;
+  background: rgba(126, 211, 33, 0.09);
+  font-size: 0.88rem;
+}
+
+.camera-stage,
+.demo-panel {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+.camera-stage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #020609;
+}
+
+.camera-stage video,
+.camera-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-stage video {
+  opacity: 0;
+}
+
+#work-canvas {
+  display: none;
+}
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.demo-controls .btn {
+  min-height: 42px;
+}
+
+.demo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+}
+
+.demo-mode-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.9rem;
+}
+
+.demo-mode-group span {
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.demo-mode-button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.06);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.demo-mode-button:hover,
+.demo-mode-button:focus-visible,
+.demo-mode-button.is-active {
+  color: #061107;
+  border-color: rgba(126, 211, 33, 0.75);
+  background: var(--green);
+  transform: translateY(-1px);
+}
+
+.demo-panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.demo-panel h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.demo-status {
+  min-height: 44px;
+  padding: 12px 14px;
+  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.demo-status[data-tone="ok"] {
+  color: #dfffd1;
+  border-color: rgba(126, 211, 33, 0.32);
+}
+
+.demo-status[data-tone="warn"] {
+  color: #ffe5a1;
+  border-color: rgba(255, 211, 77, 0.35);
+}
+
+.demo-status[data-tone="error"] {
+  color: #ffd2d2;
+  border-color: rgba(255, 120, 120, 0.35);
+}
+
+.readout-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.readout-grid span {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  color: rgba(255, 255, 255, 0.68);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.readout-grid strong {
+  color: var(--green);
+  text-align: right;
+}
+
+.model-note {
+  padding: 14px;
+  border: 1px solid rgba(126, 211, 33, 0.24);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.76);
+  background: rgba(126, 211, 33, 0.07);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.model-note code {
+  color: var(--green);
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .vision-demo-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .vision-demo-main {
+    padding-top: 96px;
+  }
+
+  .demo-controls .btn,
+  .demo-toggle,
+  .demo-mode-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .demo-mode-group span {
+    width: 100%;
+  }
+}

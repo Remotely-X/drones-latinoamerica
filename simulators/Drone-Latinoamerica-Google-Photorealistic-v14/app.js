@@ -221,7 +221,7 @@ if (saved) {
 
 let viewer = null;
 let tileset = null;
-let selectedCity = LOCATIONS.Venezuela[0];
+let selectedCity = LOCATIONS.Argentina[0];
 let startAgl = 150;
 let originAbsoluteHeight = 0;
 let origin = null;
@@ -261,7 +261,7 @@ function populateCountries() {
     opt.textContent = country;
     ui.countrySelect.appendChild(opt);
   });
-  ui.countrySelect.value = "Venezuela";
+  ui.countrySelect.value = "Argentina";
   populateCities();
 }
 
@@ -318,7 +318,7 @@ function showError(message) {
 }
 
 function currentLocation() {
-  const list = LOCATIONS[ui.countrySelect.value] || LOCATIONS.Venezuela;
+  const list = LOCATIONS[ui.countrySelect.value] || LOCATIONS.Argentina;
   return list[Number(ui.citySelect.value) || 0] || list[0];
 }
 
@@ -805,9 +805,9 @@ function updateDroneParts() {
   }
 }
 
-const RING_RADIUS = 33; // +50% respecto a V6
-const RING_PASS_RADIUS = 22.5;
-const RING_PLANE_TOLERANCE = 2.2;
+const RING_RADIUS = 11.55;
+const RING_PASS_RADIUS = 10.5;
+const RING_PLANE_TOLERANCE = 5;
 
 function ringBasis(index) {
   const ring = ringRoute[index];
@@ -898,58 +898,30 @@ function buildRings() {
     const active = i === 0;
     const color = active ? Cesium.Color.YELLOW : Cesium.Color.ORANGE;
 
-    // Aro físico 3D: tubo grueso, no un simple punto.
-    const tube = viewer.entities.add({
-      polylineVolume: {
-        positions,
-        shape: tubeShape(active ? 2.0 : 1.55),
-        material: color.withAlpha(active ? 0.98 : 0.90),
-        cornerType: Cesium.CornerType.ROUNDED,
-        shadows: Cesium.ShadowMode.DISABLED
-      }
-    });
+    // Aro limpio y liviano: sin volumen 3D para evitar costuras internas.
+    const tube = null;
 
-    // Halo luminoso adicional. arcType NONE mantiene la geometría local exacta.
+    // Contorno luminoso fino. arcType NONE mantiene la geometría local exacta.
     const line = viewer.entities.add({
       polyline: {
         positions,
-        width: active ? 12 : 7,
+        width: active ? 6 : 4,
         arcType: Cesium.ArcType.NONE,
         material: new Cesium.PolylineGlowMaterialProperty({
-          glowPower: active ? 0.55 : 0.32,
+          glowPower: active ? 0.38 : 0.24,
           color: color.withAlpha(0.98)
         }),
         depthFailMaterial: new Cesium.PolylineGlowMaterialProperty({
-          glowPower: active ? 0.65 : 0.40,
+          glowPower: active ? 0.45 : 0.30,
           color: color.withAlpha(0.98)
         })
       }
     });
 
-    // Aro 2D de respaldo siempre visible. Así nunca vuelve a quedar solo un punto.
-    const halo = viewer.entities.add({
-      position: localToFixed(ring.x, ring.y, ring.z),
-      billboard: {
-        image: ringSvgDataUri(active, i+1),
-        width: active ? 190 : 132,
-        height: active ? 190 : 132,
-        verticalOrigin: Cesium.VerticalOrigin.CENTER,
-        horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-        disableDepthTestDistance: Number.POSITIVE_INFINITY,
-        scaleByDistance: new Cesium.NearFarScalar(50, 1.25, 5000, 0.72)
-      }
-    });
+    // Sin aro 2D superpuesto: deja una sola silueta por objetivo.
+    const halo = null;
 
-    const center = viewer.entities.add({
-      position: localToFixed(ring.x, ring.y, ring.z),
-      point: {
-        pixelSize: active ? 8 : 5,
-        color,
-        outlineColor: Cesium.Color.BLACK,
-        outlineWidth: 2,
-        disableDepthTestDistance: Number.POSITIVE_INFINITY
-      }
-    });
+    const center = null;
 
     const label = viewer.entities.add({
       position: localToFixed(ring.x, ring.y, ring.z + RING_RADIUS + 7),
@@ -972,13 +944,14 @@ function buildRings() {
 }
 
 function desiredSpawnLocalZ() {
-  return startAgl;
+  return Number.isFinite(ringRoute?.[0]?.z) ? ringRoute[0].z : startAgl;
 }
 
 function resetMission() {
+  const spawnZ = desiredSpawnLocalZ();
   drone.x = 0;
   drone.y = 0;
-  drone.z = startAgl;
+  drone.z = spawnZ;
   drone.vx = drone.vy = drone.vz = 0;
   drone.heading = spawnHeading;
   drone.yawRate = 0;
@@ -992,7 +965,7 @@ function resetMission() {
   updateMiniMapMarkers(true);
   drawMiniRouteCanvas();
   updateCamera();
-  showMessage(`DESPEGUE · ${Math.round(startAgl)} m SOBRE EL SUELO · AROS SOBRE AZOTEAS · ARO 1 A ~200 m`, 3000);
+  showMessage("DESPEGUE - ALTURA DEL ARO 1 - ARO 1 A ~200 m", 3000);
 }
 
 function updateRingStyles() {
@@ -1001,37 +974,42 @@ function updateRingStyles() {
     const done = i < currentRing;
     const future = i > currentRing;
 
-    re.tube.show = true;
-    re.line.show = true;
-    re.halo.show = true;
-    re.label.show = true;
-    re.center.show = true;
+    if (re.tube) re.tube.show = !done;
+    re.line.show = !done;
+    if (re.halo) re.halo.show = !done;
+    re.label.show = !done;
+    if (re.center) re.center.show = !done;
+    if (done) return;
 
     const color = done ? Cesium.Color.LIME : (active ? Cesium.Color.YELLOW : Cesium.Color.ORANGE);
-    re.tube.polylineVolume.material = color.withAlpha(active ? 0.98 : 0.88);
-    re.line.polyline.width = active ? 12 : 7;
+    if (re.tube) re.tube.polylineVolume.material = color.withAlpha(active ? 0.98 : 0.88);
+    re.line.polyline.width = active ? 6 : 4;
     re.line.polyline.material = new Cesium.PolylineGlowMaterialProperty({
-      glowPower: active ? 0.58 : 0.30,
+      glowPower: active ? 0.38 : 0.24,
       color: color.withAlpha(0.98)
     });
     re.line.polyline.depthFailMaterial = new Cesium.PolylineGlowMaterialProperty({
-      glowPower: active ? 0.68 : 0.38,
+      glowPower: active ? 0.45 : 0.30,
       color: color.withAlpha(0.98)
     });
-    re.halo.billboard.image = done ? ringSvgDataUriDone(i+1) : ringSvgDataUri(active, i+1);
-    re.halo.billboard.width = active ? 190 : 132;
-    re.halo.billboard.height = active ? 190 : 132;
-    re.center.point.pixelSize = active ? 8 : 5;
-    re.center.point.color = color;
+    if (re.halo) {
+      re.halo.billboard.image = ringSvgDataUri(active, i+1);
+      re.halo.billboard.width = active ? 190 : 132;
+      re.halo.billboard.height = active ? 190 : 132;
+    }
+    if (re.center) {
+      re.center.point.pixelSize = active ? 8 : 5;
+      re.center.point.color = color;
+    }
     re.label.label.text = done ? `ARO ${i+1} ✓` : (active ? `ARO ${i+1} · OBJETIVO` : `ARO ${i+1}`);
     re.label.label.fillColor = done ? Cesium.Color.LIME : (active ? Cesium.Color.YELLOW : Cesium.Color.WHITE);
     re.label.label.font = active ? "900 30px Segoe UI" : "900 22px Segoe UI";
 
     // Los siguientes siguen visibles, pero con menos protagonismo que el objetivo.
     if (future) {
-      re.halo.billboard.scaleByDistance = new Cesium.NearFarScalar(50, 0.95, 5000, 0.58);
+      if (re.halo) re.halo.billboard.scaleByDistance = new Cesium.NearFarScalar(50, 0.95, 5000, 0.58);
     } else {
-      re.halo.billboard.scaleByDistance = new Cesium.NearFarScalar(50, 1.25, 5000, 0.72);
+      if (re.halo) re.halo.billboard.scaleByDistance = new Cesium.NearFarScalar(50, 1.25, 5000, 0.72);
     }
   });
   updateMiniMapRingStyles();
@@ -1091,8 +1069,8 @@ function checkRings(previousPosition) {
     }
   }
 
-  // Respaldo SOLO si el dron está prácticamente en el mismo plano del aro
-  // y realmente dentro del hueco; ya no basta con pasar cerca.
+  // Respaldo si el dron entra al volumen útil del aro. Esto hace el objetivo
+  // más natural con controles de teclado y evita que parezca que no cuenta.
   if (Math.abs(s1) <= RING_PLANE_TOLERANCE && ringRadialDistance(currentPosition, ring, basis) <= RING_PASS_RADIUS) {
     completeCurrentRing();
   }
@@ -1246,7 +1224,7 @@ function updateCompass() {
 
 function autoCalibrateSpawnHeight(nowMs) {
   if (nowMs > spawnAssistUntil) return;
-  const desired = startAgl;
+  const desired = desiredSpawnLocalZ();
   const diff = desired - drone.z;
   if (Math.abs(diff) < 0.05) {
     drone.z = desired;
