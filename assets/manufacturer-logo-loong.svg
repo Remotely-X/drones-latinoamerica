@@ -1,0 +1,16 @@
+<svg width="832" height="280" viewBox="0 0 832 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="loong-logo-title">
+  <title id="loong-logo-title">Loong Drone</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 132a112 112 0 0 1 224 0" stroke="#f6bd00" stroke-width="13"/>
+    <path d="M36 147a112 112 0 0 0 103 111" stroke="#17207f" stroke-width="13"/>
+    <path d="M263 147a112 112 0 0 1-104 111" stroke="#17207f" stroke-width="13"/>
+  </g>
+  <path d="M8 124h139l-15 47z" fill="#17207f"/>
+  <path d="M292 124H154l15 47z" fill="#17207f"/>
+  <path d="M34 105h109l-11 35z" fill="#f6bd00"/>
+  <path d="M257 105H156l11 35z" fill="#f6bd00"/>
+  <path d="M143 108h14l16 36-22 117-23-117z" fill="#17207f"/>
+  <path d="M143 108h14l-6 36z" fill="#f6bd00"/>
+  <text x="333" y="153" fill="#17207f" font-family="Arial Black, Impact, sans-serif" font-size="118" font-weight="900" letter-spacing="4">LOONG</text>
+  <text x="398" y="249" fill="#17207f" font-family="Arial Black, Impact, sans-serif" font-size="80" font-weight="900" letter-spacing="28">DRONE</text>
+</svg>
