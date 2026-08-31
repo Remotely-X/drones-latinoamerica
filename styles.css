@@ -1659,6 +1659,12 @@ input {
   background-image: url("assets/market-cat-impresoras-thumb.png");
 }
 
+.market-cat-seventeen {
+  background-image: url("assets/market-cat-protectores-thumb.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .category-card strong {
   color: var(--white);
   font-size: 0.94rem;
