@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.amazon.ca)",
-      "PowerShell($ProgressPreference='SilentlyContinue'; $h=@{'User-Agent'='Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36'}; $r=Invoke-WebRequest -Uri 'https://www.amazon.ca/RealFlight-Controller-RFL2000-Simulators-Multiplayer/dp/B0BKK5NBQ2' -Headers $h -UseBasicParsing; $idx=$r.Content.IndexOf\\('colorImages'\\); if\\($idx -ge 0\\){ $r.Content.Substring\\($idx,600\\) })"
+      "PowerShell($ProgressPreference='SilentlyContinue'; $h=@{'User-Agent'='Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36'}; $r=Invoke-WebRequest -Uri 'https://www.amazon.ca/RealFlight-Controller-RFL2000-Simulators-Multiplayer/dp/B0BKK5NBQ2' -Headers $h -UseBasicParsing; $idx=$r.Content.IndexOf\\('colorImages'\\); if\\($idx -ge 0\\){ $r.Content.Substring\\($idx,600\\) })",
+      "Bash(awk '/id=\"videos-grid\"/{s=NR} /data-see-more=\"videos-grid\"/{print \"see-more btn at \"NR}' index.html)"
     ]
   }
 }
